@@ -103,7 +103,7 @@ namespace Loops
                     Console.WriteLine("By golly, you've done it! \nPress Enter to Exit.");
                     Console.ReadLine();
                     Console.WriteLine("(Flies away in binary back to the menu)");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(3000);
                 }
                 else
                 {
@@ -117,11 +117,14 @@ namespace Loops
         {
             bool activeGrades = true;
             double grade, assingments =0, trophyScores =0;
+            string entered;
             Console.WriteLine("Let's count the assingments passed within your academic record. \nStart by entering each grade and hitting enter to continue to the next.");
-            while(activeGrades == true) 
+            Console.WriteLine("Type your next grade then hit enter to continue or leave your line blank and hit Enter to Submit your results");
+            while (activeGrades == true) 
             {
-             Console.WriteLine("Enter next grade or hit Enter to exit");
-                if (Double.TryParse(Console.ReadLine().Trim(),out grade) && grade <= 100)
+            
+                entered = Console.ReadLine();
+                if (Double.TryParse(entered.Trim(),out grade) && grade <= 100)
                 {
                     ++assingments;
                     if(grade > 70)
@@ -129,13 +132,17 @@ namespace Loops
                         trophyScores++;
                     }
                 }
-                if (Console.ReadLine().Trim() == null)
+                else if (entered == "")
                 {
                     activeGrades=false;
                 }
+                else
+                {
+                    Console.WriteLine("*VALUE DOES NOT COMPUTE* (make sure to use a number value within 0-100, and that uses a reasonable # of decimals)");
+                }
             }
-            Console.WriteLine($"It reads here that you've exceeded on {Math.Round((assingments/trophyScores),1)}% of your assingments");
-            if (Math.Round((assingments / trophyScores),1)>50)
+            Console.WriteLine($"It reads here that you've exceeded on {Math.Round(((trophyScores/assingments)*100),1)}% of your assingments");
+            if (Math.Round((trophyScores / assingments),1) > 0.5)
             {
                 Console.WriteLine("Your an academic weapon!");
             }
@@ -143,14 +150,44 @@ namespace Loops
             {
                 Console.WriteLine("Your less then your average Joe six pack");
             }
+            Console.ReadLine();
+            Console.Clear();
         }
         static void OddSum()
         {
                 int total = 0, chosen = 0;
+            bool validNum = false, negative;
             Console.WriteLine("Go ahead and enter a number and I will add all the uneven previous numbers till' zero \nWell go on now...(whole numbers only)");
-            if(int.TryParse(Console.ReadLine().Trim(),out chosen))
+            while (validNum == false)
             {
-                Console.WriteLine("");
+                if (int.TryParse(Console.ReadLine().Trim(), out chosen))
+                {
+                    if (chosen < 0)
+                    {
+                        chosen = (chosen * -1);
+                        negative = true;
+                    }
+
+                    for (int i = 0; i < chosen; i++)
+                    {
+                        if ((i % 2) == 0.5)
+                        {
+                            total = total + i;
+                        }
+                    }
+                    if (negative == true)
+                    {
+                        total = (total * -1); 
+                    }
+                    Console.WriteLine($"Counting from all the odd numbers your number rounds up to be {total}.\nDrop a like and comment if you enjoyes this program and I'll see yall on the next one");
+                   Console.ReadLine ();
+                    Console.Clear();
+                    validNum = true;
+                }
+                else
+                {
+                    Console.WriteLine("Your number is no good, remember I'll be needing a whole number (no decimals) and a WHOLE NUMBER ONLY!");
+                }
             }
         }
         static void RandomNum()
