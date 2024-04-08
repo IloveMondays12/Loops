@@ -48,6 +48,7 @@ namespace Loops
                 {
                     Console.WriteLine("It would seem your choice is not on our menu, press ENTER to start again.");
                     Console.ReadLine();
+                    Console.Clear();
 
                 }
             }
@@ -156,7 +157,7 @@ namespace Loops
         static void OddSum()
         {
                 int total = 0, chosen = 0;
-            bool validNum = false, negative;
+            bool validNum = false, negative= false;
             Console.WriteLine("Go ahead and enter a number and I will add all the uneven previous numbers till' zero \nWell go on now...(whole numbers only)");
             while (validNum == false)
             {
@@ -170,7 +171,7 @@ namespace Loops
 
                     for (int i = 0; i < chosen; i++)
                     {
-                        if ((i % 2) == 0.5)
+                        if ( (i % 2) == 1)
                         {
                             total = total + i;
                         }
