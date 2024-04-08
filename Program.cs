@@ -14,7 +14,7 @@ namespace Loops
         {
             bool game = true;
             int menu;
-            while (game = true)
+            while (game == true)
             {
                 Console.WriteLine("Hey coders, how do you like my little menu? \n1) Prompter \n2) Percentage Calculator \n3) Odd Sum \n4) Random Numbers \n5) The Dice game \n6) LEAVE");
                 if (int.TryParse(Console.ReadLine(), out menu))
@@ -193,13 +193,13 @@ namespace Loops
         }
         static void RandomNum()
         {
-            Random genorator = new Random
-            int max, min;
+            Random genorator = new Random();
+            int max = 0, min = 0;
             bool validInput = false;
             Console.WriteLine("The random numbers is all about selection, \nso given a range you'll be returned with an ample 25 numbers to do with as you please!");
+            Console.WriteLine("Please start with giving me a minimum to work with (whole number)");
             while (validInput == false)
             {
-                Console.WriteLine("Please start with giving me a minimum to work with");
                 if (int.TryParse(Console.ReadLine().Trim(), out min))
                 {
                     validInput = true;
@@ -217,20 +217,23 @@ namespace Loops
             {
                 if (int.TryParse(Console.ReadLine().Trim(), out max) && max > min)
                 {
-                    validInput = true
+                    validInput = true;
                 }
                 else
                 {
-                    Console.WriteLine($"Your value was either not a valid number (No decimals), or was equal or smaller then your minimum ({min}) \nTry Again.")
+                    Console.WriteLine($"Your value was either not a valid number (No decimals), or was equal or smaller then your minimum ({min}) \nTry Again.");
                 }
             }
-            Console.WriteLine("Computing...")
-            Thread.Sleep(1000)
+            Console.WriteLine("Computing...");
+            Thread.Sleep(1000);
             for (int i = 0; i < 25; i++)
             {
                 Console.WriteLine($"{genorator.Next(min,max+1)}");
+                Thread.Sleep(300);
             }
-            Console.WriteLine("PROGRAM: 'Random Numbers' - COMPLETED \nPlease press 'ENTER' to continue.")
+            Console.WriteLine("PROGRAM: 'Random Numbers' - COMPLETED \nPlease press 'ENTER' to continue.");
+            Console.ReadLine();
+            Console.Clear();
 
         }
         static void DiceGame()
