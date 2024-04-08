@@ -193,6 +193,44 @@ namespace Loops
         }
         static void RandomNum()
         {
+            Random genorator = new Random
+            int max, min;
+            bool validInput = false;
+            Console.WriteLine("The random numbers is all about selection, \nso given a range you'll be returned with an ample 25 numbers to do with as you please!");
+            while (validInput == false)
+            {
+                Console.WriteLine("Please start with giving me a minimum to work with");
+                if (int.TryParse(Console.ReadLine().Trim(), out min))
+                {
+                    validInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("For one reason or another, your minimum does not compute.\nPlease try again and remember whole numbers only (no decimals)");
+                }
+            }
+            Console.WriteLine("MINIMUM ACCEPTED");
+            Thread.Sleep(1000);
+            Console.WriteLine("**\nNow we'll need to get a maximum value,\nsomething bigger then your first (still no deciamls):");
+            validInput = false;
+            while (validInput == false)
+            {
+                if (int.TryParse(Console.ReadLine().Trim(), out max) && max > min)
+                {
+                    validInput = true
+                }
+                else
+                {
+                    Console.WriteLine($"Your value was either not a valid number (No decimals), or was equal or smaller then your minimum ({min}) \nTry Again.")
+                }
+            }
+            Console.WriteLine("Computing...")
+            Thread.Sleep(1000)
+            for (int i = 0; i < 25; i++)
+            {
+                Console.WriteLine($"{genorator.Next(min,max+1)}");
+            }
+            Console.WriteLine("PROGRAM: 'Random Numbers' - COMPLETED \nPlease press 'ENTER' to continue.")
 
         }
         static void DiceGame()
